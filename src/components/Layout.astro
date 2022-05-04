@@ -1,0 +1,42 @@
+---
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props as Props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <title>{title}</title>
+    <meta name="title" content="Jose Vega" />
+    <meta name="description" content="Software developer" />
+    <meta
+      name="keywords"
+      content="software, developer, engineer, Honduras, freelance"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="language" content="English" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jose-vega.netlify.app/" />
+    <meta property="og:title" content="Jose Vega" />
+    <meta property="og:description" content="Software developer" />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://jose-vega.netlify.app/" />
+    <meta property="twitter:title" content="Jose Vega" />
+    <meta property="twitter:description" content="Software developer" />
+  </head>
+  <body>
+    <slot />
+    <script
+      src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"
+    ></script>
+  </body>
+</html>
