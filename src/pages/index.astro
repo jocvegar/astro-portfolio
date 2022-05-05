@@ -5,6 +5,7 @@ import Dev from "../components/Dev.svelte";
 import Work from "../components/Work.svelte";
 import Projects from "../components/Projects.svelte";
 import Tech from "../components/Tech.svelte";
+import Setup from "../components/Setup.svelte";
 // import Contact from "../components/Contact.svelte";
 import Footer from "../components/Footer.svelte";
 import NavWrapper from "../components/NavWrapper.svelte";
@@ -12,6 +13,7 @@ import userData from "../constants/userData";
 ---
 
 <Layout title="Jose Vega">
+  <Setup client:only="svelte" />
   <NavWrapper client:idle />
   <main>
     <section class="body-font text-gray-600">
@@ -178,7 +180,7 @@ import userData from "../constants/userData";
         </div>
       </div>
     </section>
-    <Dev {userData} client:only />
+    <Dev {userData} />
     <Work {userData} />
     <Projects client:idle />
     <Tech client:visible />

@@ -1,9 +1,6 @@
 <script>
   import Header from "./Header.svelte";
   export let userData = {};
-  import AOS from "aos";
-  import "aos/dist/aos.css";
-  AOS.init();
 </script>
 
 <section class="body-font text-gray-600 ">
