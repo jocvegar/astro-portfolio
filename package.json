@@ -20,8 +20,12 @@
   "dependencies": {
     "animate.css": "^4.1.1",
     "aos": "^2.3.4",
+    "axios": "^0.27.2",
+    "svelte-forms-lib": "^2.0.1",
+    "svelte-rough-notation": "^0.1.4",
     "svelte-scrollto": "^0.2.0",
     "sveltejs-tippy": "^3.0.0",
-    "swiper": "^8.1.4"
+    "swiper": "^8.1.4",
+    "yup": "^0.32.11"
   }
 }

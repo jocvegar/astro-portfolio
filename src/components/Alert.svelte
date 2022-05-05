@@ -4,7 +4,7 @@
 
 {#if alert}
   <div
-    class="relative rounded border border-light-anaranjado bg-red-100 px-4 py-3 text-anaranjado"
+    class="fixed top-0 w-screen rounded border border-light-anaranjado bg-red-100 px-4 py-3 text-anaranjado"
     role="alert"
     on:click={() => (alert = !alert)}
   >
