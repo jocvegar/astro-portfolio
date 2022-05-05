@@ -66,7 +66,7 @@
       <div class="mx-auto md:w-2/3 lg:w-1/2">
         <div class="-m-2 flex flex-wrap">
           <div class="w-full p-2 md:w-1/2">
-            <div class="relative">
+            <div class="relative text-left">
               <label for="name" class="text-sm leading-7 text-gray-600">
                 Name
               </label>
@@ -86,7 +86,7 @@
             </div>
           </div>
           <div class="w-full p-2 md:w-1/2">
-            <div class="relative">
+            <div class="relative text-left">
               <label for="email" class="text-sm leading-7 text-gray-600">
                 Email
               </label>
@@ -105,7 +105,7 @@
               {/if}
             </div>
           </div>
-          <div class="w-full p-2">
+          <div class="w-full p-4">
             <div class="relative">
               <label for="message" class="text-sm leading-7 text-gray-600">
                 Message
