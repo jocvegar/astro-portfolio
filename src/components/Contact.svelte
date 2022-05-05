@@ -33,25 +33,25 @@
     console.log("name", name);
     console.log("email", email);
     console.log("message", message);
-    // try {
-    //   await axios.post("/.netlify/functions/sendgrid/sendgrid", {
-    //     message:
-    //       `<br>` +
-    //       "Name: " +
-    //       name +
-    //       `<br>` +
-    //       "Email: " +
-    //       email +
-    //       `<br>` +
-    //       "Message: " +
-    //       message +
-    //       `<br>`,
-    //   });
-    // } catch (e) {
-    //   console.error(e);
-    //   // @ts-ignore
-    //   alert("Your message could not be sent. Sorry about that.");
-    // }
+    try {
+      await axios.post("/functions/sendgrid/sendgrid", {
+        message:
+          `<br>` +
+          "Name: " +
+          name +
+          `<br>` +
+          "Email: " +
+          email +
+          `<br>` +
+          "Message: " +
+          message +
+          `<br>`,
+      });
+    } catch (e) {
+      console.error(e);
+      // @ts-ignore
+      alert("Your message could not be sent. Sorry about that.");
+    }
   };
 </script>
 
