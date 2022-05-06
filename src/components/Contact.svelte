@@ -34,7 +34,7 @@
     console.log("email", email);
     console.log("message", message);
     try {
-      await axios.post("https://sendgrid.jocvegar.workers.dev", {
+      await axios.post("/functions/sendgrid/sendgrid", {
         message:
           `<br>` +
           "Name: " +
