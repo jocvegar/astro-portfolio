@@ -5,6 +5,9 @@
   import axios from "axios";
   export let alert = false;
   export let userData = {};
+  const SENDGRID_API_KEY = import.meta.env.SENDGRID_API_KEY;
+  const SENDGRID_SENDER_EMAIL = import.meta.env.SENDGRID_SENDER_EMAIL;
+  const SENDGRID_SENDER_NAME = import.meta.env.SENDGRID_SENDER_NAME;
 
   const { form, errors, handleChange, handleSubmit, handleReset } = createForm({
     initialValues: {
@@ -34,18 +37,43 @@
     console.log("email", email);
     console.log("message", message);
     try {
-      await axios.post("/functions/sendgrid/sendgrid", {
-        message:
-          `<br>` +
-          "Name: " +
-          name +
-          `<br>` +
-          "Email: " +
-          email +
-          `<br>` +
-          "Message: " +
-          message +
-          `<br>`,
+      await axios.post("https://api.sendgrid.com/v3/mail/send", {
+        body: JSON.stringify({
+          from: {
+            email: SENDGRID_SENDER_EMAIL,
+          },
+          subject: "SendGrid Form",
+          content: [
+            {
+              type: "text/html",
+              value:
+                `<br>` +
+                "Name: " +
+                name +
+                `<br>` +
+                "Email: " +
+                email +
+                `<br>` +
+                "Message: " +
+                message +
+                `<br>`,
+            },
+          ],
+          personalizations: [
+            {
+              to: [
+                {
+                  email: "jocvegar@gmail.com",
+                  name: SENDGRID_SENDER_NAME,
+                },
+              ],
+            },
+          ],
+        }),
+        headers: {
+          Authorization: `Bearer ${SENDGRID_API_KEY}`,
+          "Content-Type": "application/json",
+        },
       });
     } catch (e) {
       console.error(e);
