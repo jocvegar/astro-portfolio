@@ -28,7 +28,7 @@ async function sendEmail(
     },
     method: "POST",
   });
-  return email;
+  return new Response(email);
 }
 
 export async function onRequestPost(context) {
