@@ -1,50 +1,47 @@
-// const client = require("@sendgrid/mail");
-
-// function sendEmail(client, message, senderEmail, senderName) {
-//   return new Response((fulfill, reject) => {
-//     const data = {
-//       from: {
-//         email: senderEmail,
-//         name: senderName,
-//       },
-//       subject: "SendGrid Form",
-//       to: "jocvegar@gmail.com",
-//       html: `New form submission<br/> ${message}`,
-//     };
-
-//     client
-//       .send(data)
-//       .then(([response]) => {
-//         fulfill(response);
-//       })
-//       .catch((error) => reject(error));
-//   });
-// }
-// export async function onRequestPost(event, context, callback) {
-//   // exports.handler = function (event, context, callback) {
-//   const { SENDGRID_API_KEY, SENDGRID_SENDER_EMAIL, SENDGRID_SENDER_NAME } =
-//     process.env;
-
-//   const body = JSON.parse(event.body);
-//   const message = body.message;
-
-//   client.setApiKey(SENDGRID_API_KEY);
-
-//   sendEmail(client, message, SENDGRID_SENDER_EMAIL, SENDGRID_SENDER_NAME)
-//     .then((response) => callback(null, { statusCode: response.statusCode }))
-//     .catch((err) => callback(err, null));
-// }
+async function sendEmail(
+  message,
+  SENDGRID_API_KEY,
+  SENDGRID_SENDER_EMAIL,
+  SENDGRID_SENDER_NAME
+) {
+  const email = await fetch("https://api.sendgrid.com/v3/mail/send", {
+    body: JSON.stringify({
+      from: {
+        email: SENDGRID_SENDER_EMAIL,
+      },
+      subject: "SendGrid Form",
+      content: [
+        {
+          type: "text/html",
+          value: message,
+        },
+      ],
+      personalizations: [
+        {
+          to: [{ email: "jocvegar@gmail.com", name: SENDGRID_SENDER_NAME }],
+        },
+      ],
+    }),
+    headers: {
+      Authorization: `Bearer ${SENDGRID_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+  });
+  return email;
+}
 
 export async function onRequestPost(context) {
-  // Contents of context object
-  const {
-    request, // same as existing Worker API
-    env, // same as existing Worker API
-    params, // if filename includes [id] or [[path]]
-    waitUntil, // same as ctx.waitUntil in existing Worker API
-    next, // used for middleware or to fetch assets
-    data, // arbitrary space for passing data between middlewares
-  } = context;
+  const { SENDGRID_API_KEY, SENDGRID_SENDER_EMAIL, SENDGRID_SENDER_NAME } =
+    process.env;
+  const { request } = context;
+  const body = JSON.parse(request.body);
+  const message = body.message;
 
-  return new Response("Hello, world!");
+  sendEmail(
+    message,
+    SENDGRID_API_KEY,
+    SENDGRID_SENDER_EMAIL,
+    SENDGRID_SENDER_NAME
+  );
 }
