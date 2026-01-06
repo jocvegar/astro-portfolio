@@ -1,7 +1,8 @@
 const userData = {
   githubUsername: "jocvegar",
   name: "Jose Vega",
-  designation: "a web developer specializing in delivering awesome products.",
+  designation:
+    "Web developer building scalable, user-focused web applications.",
   email: "jocvegar@gmail.com",
   phone: "+504 9500-9542",
   address: "Tegucigalpa, Honduras.",
